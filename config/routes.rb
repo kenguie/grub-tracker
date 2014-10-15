@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
-  resources :grubbers
+  
+  #post 'grubbers/message', to 'grubbers#message'
+
+  resources :grubbers do
+    collection do
+      post 'message'
+    end
+  end
   root 'grubbers#new'
 end
