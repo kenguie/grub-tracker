@@ -1,4 +1,11 @@
 class GrubbersController < ApplicationController
+  
+  def message
+  	@message = params[:body]
+  	#send messages!
+  	puts "***** Sending messages: #{@message} ********"
+  end
+
   def index
   end
 
