@@ -37,6 +37,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     erubis (2.7.0)
+    excon (0.39.6)
     execjs (2.2.2)
     hike (1.2.3)
     i18n (0.6.11)
@@ -49,6 +50,9 @@ GEM
     json (1.8.1)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.52)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     mime-types (2.4.1)
     minitest (5.4.2)
     multi_json (1.10.1)
@@ -111,6 +115,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  mandrill-api
   rails (= 4.1.6)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

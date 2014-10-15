@@ -1,9 +1,25 @@
 class GrubbersController < ApplicationController
-  
+  require 'mandrill'
+
   def message
   	@message = params[:body]
   	#send messages!
-  	puts "***** Sending messages: #{@message} ********"
+  	m = Mandrill::API.new
+	message = {  
+	 :subject=> "Grub Alert!",  
+	 :from_name=> "Grub Tracker",  
+	 :text=> @message,  
+	 :to=>[  
+	   {  
+	     :email=> "brian@brianfountain.com",  
+	     :name=> "Brian Fountain"  
+	   }  
+	 ],  
+	 :html=>"<html><h1>Hi <strong>#{@message}</strong>, how are you?</h1></html>",  
+	 :from_email=>"sender@yourdomain.com"  
+	}  
+	sending = m.messages.send message  
+	puts sending
   end
 
   def index
