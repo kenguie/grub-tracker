@@ -1,4 +1,5 @@
 class Grubber < ActiveRecord::Base
+	validates :password, presence: true
 	before_create :configure_new_grubber
 	
 	def configure_new_grubber

@@ -12,6 +12,7 @@ class GrubbersController < ApplicationController
   def create
   	@grubber = Grubber.new(params.require(:grubber).permit(:email, :mobile, :password))
 
+  	#configure_new_grubber sets additional attributes
   	if @grubber.save
   		flash[:notice] = "Let's get to grubbing!"
   		redirect_to root_path
