@@ -1,5 +1,6 @@
 class GrubbersController < ApplicationController
-
+  before_action :set_grubber, only: [:edit, :update]
+  
   def message
   	message = params[:body]
   	#send messages!
@@ -18,7 +19,7 @@ class GrubbersController < ApplicationController
   end
 
   def create
-  	@grubber = Grubber.new(params.require(:grubber).permit(:email, :mobile, :password))
+  	@grubber = Grubber.new(grubber_params)
 
   	#configure_new_grubber sets additional attributes
   	if @grubber.save
@@ -31,7 +32,27 @@ class GrubbersController < ApplicationController
   end
 
   def edit
+    
+  end
+
+  def update
+    if @grubber.update(grubber_params)
+      flash[:notice] = "Grubber successfully updated!"
+      redirect_to root_path
+    else
+      flash[:alert] = "Something went wrong :("
+      render :edit
+    end
+  end
+
+  private
+
+  def grubber_params
+    params.require(:grubber).permit(:email, :mobile, :password, :email_ok, :text_ok, :subscribed)
+  end
+
+  def set_grubber
     @grubber = Grubber.find(params[:id])
   end
-  
+
 end

@@ -6,9 +6,20 @@ class Grubber < ActiveRecord::Base
 	validates :password, presence: true
 	validates :email, uniqueness: true
 	validates :mobile, uniqueness: true
+	validates :email, presence: { 
+				message: "Must provide email or mobile number.", 
+				unless: Proc.new {|grubber| grubber.mobile.present?} }
+				
+	validates :mobile, presence: { 
+				message: "Must provide email or mobile number.",
+				unless: Proc.new {|grubber| grubber.email.present?} }		
 	before_create :configure_new_grubber
 	before_validation :normalize_mobile
 	
+	# def either_email_or_mobile_present
+	# 	if email.present?
+	# end
+
 	def normalize_mobile
  		self.mobile = GlobalPhone.normalize(self.mobile)
 	end

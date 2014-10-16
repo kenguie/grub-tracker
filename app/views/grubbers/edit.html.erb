@@ -13,10 +13,31 @@
 		</ul>
 	<% end %>
 	<%= f.label :email %>
-	<%= f.text_field :email %><br />
+	<%= f.text_field :email %>
+	<%= f.check_box :email_ok %>
+	<% if @grubber.email_ok %>
+		<span class="detail">(uncheck to stop email alerts)</span>
+	<% else %>
+		<span class="detail">(check to receive email alerts)</span>
+	<% end %>
+	<br />
 	<%= f.label :mobile %>
-	<%= f.phone_field :mobile %><br />
-	<%= f.label :password %>
-	<%= f.password_field :password %><br />
+	<%= f.phone_field :mobile %>
+	<%= f.check_box :text_ok %>
+	<% if @grubber.text_ok %>
+		<span class="detail">(uncheck to stop text alerts)</span>
+	<% else %>
+		<span class="detail">(check to receive text alerts)</span>
+	<% end %>
+	<br />
+	<% if @grubber.subscribed %>
+	<p class="detail">Want to stop receiving alerts? Uncheck this box:
+		<%= f.check_box :subscribed %>
+	</p> 
+	<% else %>
+		<p class="detail">You are not receiving alerts? Check this box to fix that:
+		<%= f.check_box :subscribed %>
+	</p> 
+	<% end %>
 	<%= f.submit %>
 <% end %>

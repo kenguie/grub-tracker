@@ -17,3 +17,15 @@ body {
 	font-family: Arial;
 	font-size: 1.5em;
 }
+
+nav {
+	text-align: right;
+	font-size: .5em;
+	padding: .5em 0 1em 0;
+	border-bottom: 1px solid #CCC;
+}
+
+.detail {
+	font-size: .5em;
+	color: #999;
+}
