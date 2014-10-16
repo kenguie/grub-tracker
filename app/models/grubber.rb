@@ -16,6 +16,20 @@ class Grubber < ActiveRecord::Base
 	  	end
 	end
 
+	def send_text(message_body)
+		account_sid = ENV['GRUBBER_TWILIO_ACCOUNT']
+		auth_token = ENV['GRUBBER_TWILIO_SECRET']
+		grubber_system_number = ENV['GRUBBER_SYSTEM_NUMBER']
+		mobile = self.mobile
+		@client = Twilio::REST::Client.new account_sid, auth_token
+
+		message = @client.account.messages.create(
+			:body => message_body,
+		    :to => mobile,
+		    :from => grubber_system_number)
+		puts message.to
+	end
+
 	def send_email(message_body)
 		m = Mandrill::API.new
 	    recipient = [{email: self.email}]

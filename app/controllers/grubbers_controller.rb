@@ -3,10 +3,7 @@ class GrubbersController < ApplicationController
   def message
   	message = params[:body]
   	#send messages!
-    #Grubber.email_grubbers(message)
-    Grubber.emailable.each do |grubber|
-      grubber.send_email(message)
-    end
+    Grubber.email_grubbers(message)
   end
 
   def index
