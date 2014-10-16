@@ -30,6 +30,12 @@ class Grubber < ActiveRecord::Base
 		puts message.to
 	end
 
+	def self.text_grubbers(message_body)
+	  	Grubber.textable.each do |grubber|
+	  		grubber.send_text(message_body)
+	  	end
+	end
+
 	def send_email(message_body)
 		m = Mandrill::API.new
 	    recipient = [{email: self.email}]
