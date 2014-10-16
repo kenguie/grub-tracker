@@ -4,8 +4,10 @@ class Grubber < ActiveRecord::Base
 	scope :emailable, ->{ where(email_ok: true, subscribed: true) }
 	scope :textable, ->{ subscribed.where(text_ok: true) }
 	validates :password, presence: true
+	validates :email, uniqueness: true
+	validates :mobile, uniqueness: true
 	before_create :configure_new_grubber
-	before_save :normalize_mobile
+	before_validation :normalize_mobile
 	
 	def normalize_mobile
  		self.mobile = GlobalPhone.normalize(self.mobile)
