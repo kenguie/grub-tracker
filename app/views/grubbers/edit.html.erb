@@ -1,2 +1,22 @@
-<h1>Grubbers#edit</h1>
-<p>Find me in app/views/grubbers/edit.html.erb</p>
+<h1>Welcome Grubber. Good to have you back!</h1>
+
+<%= flash[:notice] if flash[:notice] %>
+<%= flash[:alert] if flash[:alert] %>
+
+<p>Would you like to receive your messages via email or your mobile number? Fill in one (or both below).</p>
+<%= form_for @grubber do |f| %>
+	<% if @grubber.errors.any? %>
+		<ul>
+		<% @grubber.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+		</ul>
+	<% end %>
+	<%= f.label :email %>
+	<%= f.text_field :email %><br />
+	<%= f.label :mobile %>
+	<%= f.phone_field :mobile %><br />
+	<%= f.label :password %>
+	<%= f.password_field :password %><br />
+	<%= f.submit %>
+<% end %>

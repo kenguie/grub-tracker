@@ -7,7 +7,7 @@ class GrubbersController < ApplicationController
     Grubber.text_grubbers(message)
   end
 
-  def index
+  def sent
   end
 
   def show
@@ -23,7 +23,7 @@ class GrubbersController < ApplicationController
   	#configure_new_grubber sets additional attributes
   	if @grubber.save
   		flash[:notice] = "Let's get to grubbing!"
-  		redirect_to root_path
+  		redirect_to message_path
   	else
   		flash[:alert] = "Something went wrong!"
   		render :new
@@ -31,5 +31,7 @@ class GrubbersController < ApplicationController
   end
 
   def edit
+    @grubber = Grubber.find(params[:id])
   end
+  
 end
