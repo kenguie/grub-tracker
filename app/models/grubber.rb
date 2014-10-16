@@ -3,6 +3,7 @@ class Grubber < ActiveRecord::Base
 	scope :subscribed, ->{ where(subscribed: true) }
 	scope :emailable, ->{ where(email_ok: true, subscribed: true) }
 	scope :textable, ->{ subscribed.where(text_ok: true) }
+	scope :find_grubber, ->(params_key) { where('email = ? or mobile = ?', "#{params_key}", "#{params_key}") }
 	validates :password, presence: true
 	validates :email, uniqueness: true
 	validates :mobile, uniqueness: true

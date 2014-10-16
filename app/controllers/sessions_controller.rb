@@ -4,7 +4,9 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		@grubber = Grubber.find_by(email: params[:email])
+		login = GlobalPhone.normalize(params[:email])
+		login = params[:email] unless login 
+		@grubber = Grubber.find_grubber(login).first
 		if @grubber and @grubber.password == params[:password]
 			session[:grubber_id] = @grubber.id
 			flash[:notice] = "You logged in Grubber!"
