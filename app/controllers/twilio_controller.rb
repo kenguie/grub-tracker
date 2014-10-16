@@ -6,7 +6,7 @@ class TwilioController < ApplicationController
 		message = params[:Body]
 		Grubber.email_grubbers(message)
     	Grubber.text_grubbers(message)
-    	render status :ok
+    	render status: :ok
 	end
 
 end
