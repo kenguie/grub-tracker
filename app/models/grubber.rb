@@ -5,7 +5,12 @@ class Grubber < ActiveRecord::Base
 	scope :textable, ->{ subscribed.where(text_ok: true) }
 	validates :password, presence: true
 	before_create :configure_new_grubber
+	before_save :normalize_mobile
 	
+	def normalize_mobile
+ 		self.mobile = GlobalPhone.normalize(self.mobile)
+	end
+
 	def configure_new_grubber
 		self.subscribed = true
 	  	if self.mobile.present?

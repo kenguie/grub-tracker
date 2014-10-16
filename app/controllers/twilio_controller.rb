@@ -4,8 +4,11 @@ class TwilioController < ApplicationController
 
 	def sms
 		message = params[:Body]
-		Grubber.email_grubbers(message)
-    	Grubber.text_grubbers(message)
+		grubber = Grubber.find_by_mobile(params[:From])
+		if grubber
+			Grubber.email_grubbers(message)
+	    	Grubber.text_grubbers(message)
+	    end
     	render status: :ok
 	end
 

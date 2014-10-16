@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/sstephenson/global_phone.git
+  revision: 9b2772c4678dc9e323c58d9258663812bbd9fc73
+  specs:
+    global_phone (1.0.1)
+    global_phone_dbgen (1.0.1)
+      nokogiri (~> 1.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -55,8 +63,11 @@ GEM
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
     mime-types (2.4.1)
+    mini_portile (0.6.0)
     minitest (5.4.2)
     multi_json (1.10.1)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
     pg (0.17.1)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -124,6 +135,8 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  global_phone
+  global_phone_dbgen!
   jbuilder (~> 2.0)
   jquery-rails
   mandrill-api
